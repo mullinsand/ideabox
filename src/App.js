@@ -10,23 +10,24 @@ const initialIdeas = [
   { id: 3, title: 'Flying pigs', description: 'Would allow many things to finally come true' }
 ];
 
-const addIdea = (idea) => {
-  let newIdeaList = ideas.concat([idea]);
-  setIdeas(newIdeaList);
-}
-
-const deleteIdea = (id) => {
-  let newIdeaList = ideas.fileter(idea => idea.id !== id);
-  setIdeas(newIdeaList);
-}
 
 const App = () => {
   const [ideas, setIdeas] = useState(initialIdeas);
+  
+  const addIdea = (idea) => {
+    let newIdeaList = ideas.concat([idea]);
+    setIdeas(newIdeaList);
+  }
+  
+  const deleteIdea = (id) => {
+    let newIdeaList = ideas.filter(idea => idea.id !== id);
+    setIdeas(newIdeaList);
+  }
 
   return (
     <main className="App">
       <h1>IdeaBox</h1>
-      <Ideas ideas={ideas}/>
+      <Ideas ideas={ideas} deleteIdea={deleteIdea} />
       <Form addIdea={addIdea} />
     </main>
   )

@@ -11,7 +11,7 @@ const Ideas = ({ideas, deleteIdea}) => {
         description={idea.description}
         id={idea.id}
         key={idea.id}
-        deleteIdea={props.deleteIdea}
+        deleteIdea={deleteIdea}
       />
     )
   });
