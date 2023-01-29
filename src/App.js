@@ -1,25 +1,36 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Ideas from './Ideas';
+import Form from './Form';
 
-function App() {
+
+const initialIdeas = [
+  { id: 1, title: 'Sweaters for pugs', description: 'Sweaters but only for pugs to wear' },
+  { id: 2, title: 'Salt Water Taffy', description: 'The ocean is cool but what if it was candy?' },
+  { id: 3, title: 'Flying pigs', description: 'Would allow many things to finally come true' }
+];
+
+
+const App = () => {
+  const [ideas, setIdeas] = useState(initialIdeas);
+  
+  const addIdea = (idea) => {
+    let newIdeaList = ideas.concat([idea]);
+    setIdeas(newIdeaList);
+  }
+  
+  const deleteIdea = (id) => {
+    let newIdeaList = ideas.filter(idea => idea.id !== id);
+    setIdeas(newIdeaList);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <main className="App">
+      <h1>IdeaBox</h1>
+      <Ideas ideas={ideas} deleteIdea={deleteIdea} />
+      <Form addIdea={addIdea} />
+    </main>
+  )
 }
 
 export default App;
